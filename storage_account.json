@@ -1,7 +1,19 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {
+        "storage_tier": {
+            "type": "string",
+            "metadata": {
+                "description": "tier of storage account"
+            },
+            "defaultValue": "Premium",
+            " allowedValues": [
+                "Premium",
+                "Standard"
+            ]
+        }
+    },
     "functions": [],
     "variables": {},
     "resources": [
@@ -16,7 +28,7 @@
             "kind": "StorageV2",
             "sku": {
                 "name": "Premium_LRS",
-                "tier": "Premium"
+                "tier": "[parameters('storage_tier')]"
             }
         }
     ],
